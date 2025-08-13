@@ -6,6 +6,9 @@ An open-source implementation of a Ground News-like news aggregation service tha
 
 Infact demonstrates an intelligent news processing pipeline that takes sensationalized articles and transforms them into factual, neutral reporting. The system clusters similar stories, extracts key facts, removes editorial bias, and generates clean, informative articles.
 
+> [!NOTE]
+> Coded to life with help from Claude 4.1 Opus
+
 ## 🚀 Key Features
 
 - **Smart Article Clustering**: Groups related news stories using advanced NLP embeddings
