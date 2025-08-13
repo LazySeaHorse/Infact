@@ -15,6 +15,12 @@ Infact demonstrates an intelligent news processing pipeline that takes sensation
 - **Topic Modeling**: Automatically names story clusters using LDA topic extraction
 - **Interactive Demo**: Real-time processing pipeline with visual analytics
 
+|  |  |
+|:--:|:--:|
+| ![img1](https://i.postimg.cc/5NhrpJSw/gesrfdg.png) | ![img2](https://i.postimg.cc/4xpSS0Wj/rtyhdt5hg.png) |
+| ![img3](https://i.postimg.cc/J4Dgb0Zr/tyjhdtfygh.png) | ![img4](https://i.postimg.cc/HWPRcXJv/ujnftryhjnrdtfyg.png) |
+
+
 ## 🛠️ Tech Stack
 
 ### Core Processing Pipeline
