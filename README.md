@@ -79,39 +79,8 @@ These exaggerated examples demonstrate the system's ability to extract factual c
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+
-- Google API key for Gemini
-- NGROK token (for Colab deployment)
-
-### Installation
-
-```bash
-pip install streamlit sentence-transformers scikit-learn gensim spacy textblob fuzzywuzzy python-Levenshtein
-pip install google-generativeai langchain langchain-google-genai pyngrok wordcloud plotly nltk
-
-# Download required models
-python -m spacy download en_core_web_sm
-python -m textblob.download_corpora
-```
-
-### Running the Demo
-
-1. Set up environment variables:
-```bash
-export GOOGLE_API_KEY="your_gemini_api_key"
-export NGROK_AUTH_TOKEN="your_ngrok_token"  # For Colab only
-```
-
-2. Run the Jupyter notebook:
-```bash
-jupyter notebook Infact.ipynb
-```
-
-3. Or extract and run the Streamlit app:
-```bash
-streamlit run app.py
-```
+Download the Jupyter notebook (or copy paste content into a new Google Colab notebook cell). Hit run.
+If you're using Colab, you'll need to configure GOOGLE_API_KEY and NGROK_AUTH_TOKEN secrets (left panel, key icon).
 
 ## 📈 Pipeline Metrics
 
