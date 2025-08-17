@@ -123,7 +123,7 @@
                 padding: 0 12px;
                 height: 48px;
             }
-            
+
             :root {
                 --topbar-h: 48px;
             }
@@ -153,11 +153,11 @@
             .brand {
                 gap: 8px;
             }
-            
+
             .brand .logo {
                 font-size: 18px;
             }
-            
+
             .brand .subtitle {
                 font-size: 10px;
             }
@@ -179,7 +179,7 @@
             .actions {
                 gap: 4px;
             }
-            
+
             .time-tag {
                 font-size: 10px;
                 padding: 4px 6px;
@@ -271,7 +271,7 @@
             .tabs {
                 padding: 0 12px;
             }
-            
+
             .tab {
                 font-size: 11px;
                 padding: 8px 12px;
@@ -303,6 +303,9 @@
             max-width: var(--maxw);
             margin: 0 auto;
             padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
         }
 
         .grid {
@@ -310,6 +313,66 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--gutter);
             grid-auto-rows: min-content;
+        }
+
+        /* Feed sidebar */
+        .feed-sidebar {
+            position: sticky;
+            top: calc(var(--topbar-h) + var(--tabbar-h) + 24px);
+            height: fit-content;
+        }
+
+        .feed-sidebar .block-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 0 0 12px 0;
+        }
+
+        .providers-list {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+        }
+
+        .provider {
+            border-bottom: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        .provider:last-child {
+            border-bottom: 0;
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .provider-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .provider-domain {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .provider-details {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .provider-owner {
+            margin-bottom: 4px;
+        }
+
+        .provider-type {
+            font-style: italic;
         }
 
         /* Featured card variants */
@@ -361,12 +424,25 @@
         }
 
         /* Mobile responsive adjustments */
+        @media (max-width: 1024px) {
+            .feed {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .feed-sidebar {
+                order: -1;
+                position: static;
+                margin-bottom: 16px;
+            }
+        }
+
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-            
+
             .feed {
                 padding: 0 12px;
             }
@@ -467,7 +543,7 @@
             .card .title {
                 font-size: 16px;
             }
-            
+
             .card .excerpt {
                 font-size: 14px;
                 -webkit-line-clamp: 3;
@@ -490,15 +566,15 @@
                 gap: 8px;
                 align-items: start;
             }
-            
+
             .favicons {
                 order: 1;
             }
-            
+
             .bias-mini {
                 order: 2;
             }
-            
+
             .timestamp {
                 order: 3;
                 justify-self: start;
@@ -619,7 +695,7 @@
             .article-view {
                 padding: 0 12px;
             }
-            
+
             .article-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
@@ -686,7 +762,7 @@
             .article-title {
                 font-size: 24px;
             }
-            
+
             .article-content {
                 font-size: 16px;
             }
@@ -696,7 +772,7 @@
             .article-title {
                 font-size: 20px;
             }
-            
+
             .article-content {
                 font-size: 15px;
             }
@@ -968,6 +1044,96 @@
         <!-- Feed View -->
         <section id="feed" class="feed" aria-label="News feed">
             <div id="feedGrid" class="grid"></div>
+
+            <!-- Feed Sidebar -->
+            <aside class="feed-sidebar">
+                <h3 class="block-title">News Providers</h3>
+                <div class="providers-list">
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">R</div>
+                            <div>
+                                <div class="provider-name">Reuters</div>
+                                <div class="provider-domain">reuters.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">Owned by Thomson Reuters Corporation</div>
+                            <div class="provider-type">International news agency, financial data</div>
+                        </div>
+                    </div>
+
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">G</div>
+                            <div>
+                                <div class="provider-name">The Guardian</div>
+                                <div class="provider-domain">theguardian.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">Guardian Media Group (Scott Trust)</div>
+                            <div class="provider-type">Independent, reader-funded journalism</div>
+                        </div>
+                    </div>
+
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">W</div>
+                            <div>
+                                <div class="provider-name">Wall Street Journal</div>
+                                <div class="provider-domain">wsj.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">News Corp (Rupert Murdoch)</div>
+                            <div class="provider-type">Business and financial news</div>
+                        </div>
+                    </div>
+
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">B</div>
+                            <div>
+                                <div class="provider-name">Bloomberg</div>
+                                <div class="provider-domain">bloomberg.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">Bloomberg L.P. (Michael Bloomberg)</div>
+                            <div class="provider-type">Financial news and data services</div>
+                        </div>
+                    </div>
+
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">A</div>
+                            <div>
+                                <div class="provider-name">Associated Press</div>
+                                <div class="provider-domain">apnews.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">Non-profit cooperative</div>
+                            <div class="provider-type">Wire service, member-owned</div>
+                        </div>
+                    </div>
+
+                    <div class="provider">
+                        <div class="provider-header">
+                            <div class="favicon">F</div>
+                            <div>
+                                <div class="provider-name">Financial Times</div>
+                                <div class="provider-domain">ft.com</div>
+                            </div>
+                        </div>
+                        <div class="provider-details">
+                            <div class="provider-owner">Nikkei Inc.</div>
+                            <div class="provider-type">International business journalism</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
         </section>
 
         <!-- Article View -->
@@ -1418,10 +1584,10 @@
         // ---------------------------------------------------------
         function renderFeed(filterTab = 'Trending') {
             const grid = document.getElementById('feedGrid');
-            
+
             // Add transition class
             grid.classList.add('transitioning');
-            
+
             setTimeout(() => {
                 grid.innerHTML = '';
                 const filtered = articles.filter(a => {
@@ -1437,84 +1603,84 @@
                     let cardClass = 'card parallax-container';
                     if (featuredIndices.has(index)) cardClass += ' featured';
                     if (tallIndices.has(index)) cardClass += ' tall';
-                    
-                    const card = el('article', { 
-                        class: cardClass, 
-                        role: 'article', 
+
+                    const card = el('article', {
+                        class: cardClass,
+                        role: 'article',
                         tabindex: '0',
                         style: `animation-delay: ${index * 0.1}s`
                     });
-                const img = el('div', { class: 'img loading', 'aria-hidden': 'true' }, 'Loading...');
-                const body = el('div', { class: 'body' });
+                    const img = el('div', { class: 'img loading', 'aria-hidden': 'true' }, 'Loading...');
+                    const body = el('div', { class: 'body' });
 
-                // Load image asynchronously
-                const imageUrl = articleImages[a.id];
-                if (imageUrl) {
-                    loadImage(imageUrl)
-                        .then(loadedImg => {
-                            img.innerHTML = '';
-                            img.classList.remove('loading');
-                            img.appendChild(loadedImg);
-                        })
-                        .catch(() => {
-                            // Fallback to a simple colored placeholder
-                            img.innerHTML = '';
-                            img.classList.remove('loading');
-                            img.style.background = `linear-gradient(135deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`;
-                            img.textContent = 'Image';
-                        });
-                } else {
-                    img.textContent = 'Image';
-                    img.classList.remove('loading');
-                }
-                const title = el('div', { class: 'title' }, a.title);
-                const excerpt = el('div', { class: 'excerpt' }, a.excerpt);
-                const bottom = el('div', { class: 'bottom' });
+                    // Load image asynchronously
+                    const imageUrl = articleImages[a.id];
+                    if (imageUrl) {
+                        loadImage(imageUrl)
+                            .then(loadedImg => {
+                                img.innerHTML = '';
+                                img.classList.remove('loading');
+                                img.appendChild(loadedImg);
+                            })
+                            .catch(() => {
+                                // Fallback to a simple colored placeholder
+                                img.innerHTML = '';
+                                img.classList.remove('loading');
+                                img.style.background = `linear-gradient(135deg, #${Math.floor(Math.random() * 16777215).toString(16)}, #${Math.floor(Math.random() * 16777215).toString(16)})`;
+                                img.textContent = 'Image';
+                            });
+                    } else {
+                        img.textContent = 'Image';
+                        img.classList.remove('loading');
+                    }
+                    const title = el('div', { class: 'title' }, a.title);
+                    const excerpt = el('div', { class: 'excerpt' }, a.excerpt);
+                    const bottom = el('div', { class: 'bottom' });
 
-                // Favicons (first 3)
-                const favs = el('div', { class: 'favicons', 'aria-label': 'Source sites' },
-                    ...a.sources.slice(0, 3).map(s =>
-                        el('div', { class: 'favicon', title: s.domain, 'aria-label': s.domain }, faviconLetter(s.domain))
-                    )
-                );
+                    // Favicons (first 3)
+                    const favs = el('div', { class: 'favicons', 'aria-label': 'Source sites' },
+                        ...a.sources.slice(0, 3).map(s =>
+                            el('div', { class: 'favicon', title: s.domain, 'aria-label': s.domain }, faviconLetter(s.domain))
+                        )
+                    );
 
-                // Bias mini legend based on distribution
-                const counts = { neg: 0, neu: 0, pos: 0 };
-                a.sources.forEach(s => counts[s.bias]++);
-                const bias = el('div', { class: 'bias-mini', title: 'Bias indicators (source tones)' },
-                    el('span', {}, 'Bias:'),
-                    el('span', { class: 'dot neg', title: `Negative: ${counts.neg}` }),
-                    el('span', { class: 'dot neu', title: `Neutral: ${counts.neu}` }),
-                    el('span', { class: 'dot pos', title: `Positive: ${counts.pos}` })
-                );
+                    // Bias mini legend based on distribution
+                    const counts = { neg: 0, neu: 0, pos: 0 };
+                    a.sources.forEach(s => counts[s.bias]++);
+                    const bias = el('div', { class: 'bias-mini', title: 'Bias indicators (source tones)' },
+                        el('span', {}, 'Bias:'),
+                        el('span', { class: 'dot neg', title: `Negative: ${counts.neg}` }),
+                        el('span', { class: 'dot neu', title: `Neutral: ${counts.neu}` }),
+                        el('span', { class: 'dot pos', title: `Positive: ${counts.pos}` })
+                    );
 
-                const time = el('div', { class: 'timestamp' }, timeAgo(a.time));
+                    const time = el('div', { class: 'timestamp' }, timeAgo(a.time));
 
-                bottom.appendChild(favs);
-                bottom.appendChild(bias);
-                bottom.appendChild(time);
+                    bottom.appendChild(favs);
+                    bottom.appendChild(bias);
+                    bottom.appendChild(time);
 
-                body.appendChild(title);
-                body.appendChild(excerpt);
-                body.appendChild(bottom);
+                    body.appendChild(title);
+                    body.appendChild(excerpt);
+                    body.appendChild(bottom);
 
-                // Hover facts
-                const hoverfacts = el('div', { class: 'hoverfacts' },
-                    el('h5', {}, 'Key Facts'),
-                    el('ul', {},
-                        ...a.bullets.slice(0, 3).map(f => el('li', {}, f))
-                    )
-                );
+                    // Hover facts
+                    const hoverfacts = el('div', { class: 'hoverfacts' },
+                        el('h5', {}, 'Key Facts'),
+                        el('ul', {},
+                            ...a.bullets.slice(0, 3).map(f => el('li', {}, f))
+                        )
+                    );
 
-                card.appendChild(img);
-                card.appendChild(body);
-                card.appendChild(hoverfacts);
+                    card.appendChild(img);
+                    card.appendChild(body);
+                    card.appendChild(hoverfacts);
 
-                // Interaction: open article on click/Enter
-                card.addEventListener('click', () => openArticle(a.id));
-                card.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(a.id); }
-                });
+                    // Interaction: open article on click/Enter
+                    card.addEventListener('click', () => openArticle(a.id));
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(a.id); }
+                    });
 
                     grid.appendChild(card);
                 });
@@ -1756,28 +1922,28 @@
         // ---------------------------------------------------------
         function initParallax() {
             let ticking = false;
-            
+
             function updateParallax() {
                 const scrolled = window.pageYOffset;
                 const parallaxElements = document.querySelectorAll('.parallax-container');
-                
+
                 parallaxElements.forEach((element, index) => {
                     const rect = element.getBoundingClientRect();
                     const speed = 0.02; // Very subtle movement
                     const yPos = -(scrolled * speed * (index % 3 + 1));
                     element.style.transform = `translate3d(0, ${yPos}px, 0)`;
                 });
-                
+
                 ticking = false;
             }
-            
+
             function requestTick() {
                 if (!ticking && !reduceMotion()) {
                     requestAnimationFrame(updateParallax);
                     ticking = true;
                 }
             }
-            
+
             window.addEventListener('scroll', requestTick);
         }
 
