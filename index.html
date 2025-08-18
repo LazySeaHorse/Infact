@@ -110,7 +110,7 @@
             right: 0;
             height: var(--topbar-h);
             display: grid;
-            grid-template-columns: 1fr auto;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
             padding: 0 16px;
             border-bottom: 1px solid var(--border);
@@ -159,7 +159,7 @@
             }
 
             .brand .subtitle {
-                font-size: 10px;
+                display: none;
             }
         }
 
@@ -169,10 +169,66 @@
             }
         }
 
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-self: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 24px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--fg);
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 0;
+        }
+
+        .search-input:focus {
+            outline: var(--focus);
+            outline-offset: 2px;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-clear {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .search-clear:hover {
+            color: var(--fg);
+        }
+
+        .search-container.has-query .search-clear {
+            display: block;
+        }
+
         .actions {
             display: flex;
             gap: 8px;
             align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                max-width: 160px;
+                margin: 0 16px;
+            }
+            .time-tag {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -183,6 +239,16 @@
             .time-tag {
                 font-size: 10px;
                 padding: 4px 6px;
+            }
+
+            .search-container {
+                max-width: 100px;
+                margin: 0 8px;
+            }
+
+            .search-input {
+                font-size: 12px;
+                padding: 6px 8px;
             }
         }
 
@@ -304,8 +370,14 @@
             margin: 0 auto;
             padding: 0 16px;
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 200px 1fr 300px;
+            grid-template-areas: "timeline main sidebar";
             gap: 40px;
+        }
+
+        .feed.search-active {
+            grid-template-columns: 300px 1fr 300px;
+            grid-template-areas: "filters main sidebar";
         }
 
         .grid {
@@ -313,6 +385,150 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--gutter);
             grid-auto-rows: min-content;
+            grid-area: main;
+        }
+
+        /* Search Results */
+        .search-results {
+            display: none;
+            grid-area: main;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results-header {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-results-count {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .search-results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-card {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .search-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-1px);
+        }
+
+        .search-card .img {
+            width: 120px;
+            height: 80px;
+            background:
+                repeating-linear-gradient(90deg,
+                    var(--img-lines) 0,
+                    var(--img-lines) 1px,
+                    transparent 1px,
+                    transparent 8px),
+                repeating-linear-gradient(0deg,
+                    var(--img-lines) 0,
+                    var(--img-lines) 1px,
+                    transparent 1px,
+                    transparent 8px);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            font-size: 10px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .search-card .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .search-card .content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .search-card .title {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .search-card .excerpt {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .search-card .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .search-card .sources {
+            display: flex;
+            gap: 4px;
+        }
+
+        .search-card .sources .favicon {
+            width: 16px;
+            height: 16px;
+            font-size: 9px;
+        }
+
+        .search-card .sidebar-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            min-width: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .search-card {
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto;
+                gap: 12px;
+            }
+
+            .search-card .img {
+                width: 80px;
+                height: 60px;
+            }
+
+            .search-card .sidebar-info {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
 
         /* Feed sidebar */
@@ -320,6 +536,23 @@
             position: sticky;
             top: calc(var(--topbar-h) + var(--tabbar-h) + 24px);
             height: fit-content;
+            grid-area: sidebar;
+        }
+
+        .search-sidebar {
+            position: sticky;
+            top: calc(var(--topbar-h) + var(--tabbar-h) + 24px);
+            height: fit-content;
+            grid-area: filters;
+            display: none;
+        }
+
+        .feed.search-active .search-sidebar {
+            display: block;
+        }
+
+        .feed.search-active .timeline {
+            display: none;
         }
 
         .feed-sidebar .block-title {
@@ -330,9 +563,18 @@
             margin: 0 0 12px 0;
         }
 
+        .search-sidebar .block-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 0 0 12px 0;
+        }
+
         .providers-list {
             border: 1px solid var(--border);
             background: var(--card-bg);
+            margin-bottom: 24px;
         }
 
         .provider {
@@ -373,6 +615,87 @@
 
         .provider-type {
             font-style: italic;
+        }
+
+        /* Search Filters */
+        .search-filters {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            margin-bottom: 24px;
+        }
+
+        .filter-group {
+            border-bottom: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        .filter-group:last-child {
+            border-bottom: 0;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .filter-select {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--fg);
+            padding: 6px 8px;
+            font-size: 14px;
+            border-radius: 0;
+        }
+
+        .filter-select:focus {
+            outline: var(--focus);
+            outline-offset: 2px;
+        }
+
+        .filter-toggle {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .filter-toggle button {
+            flex: 1;
+            padding: 6px 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .filter-toggle button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .date-input {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--fg);
+            padding: 6px 8px;
+            font-size: 12px;
+            border-radius: 0;
+        }
+
+        .date-input:focus {
+            outline: var(--focus);
+            outline-offset: 2px;
         }
 
         /* Featured card variants */
@@ -427,13 +750,32 @@
         @media (max-width: 1024px) {
             .feed {
                 grid-template-columns: 1fr;
+                grid-template-areas:
+                    "sidebar"
+                    "main";
                 gap: 24px;
             }
 
+            .feed.search-active {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "filters"
+                    "main"
+                    "sidebar";
+            }
+
             .feed-sidebar {
-                order: -1;
                 position: static;
                 margin-bottom: 16px;
+            }
+
+            .search-sidebar {
+                position: static;
+                margin-bottom: 16px;
+            }
+
+            .timeline {
+                display: none;
             }
         }
 
@@ -978,6 +1320,37 @@
             background: rgba(110, 75, 58, 0.15);
             color: inherit;
         }
+
+        .timeline {
+            position: sticky;
+            top: calc(var(--topbar-h) + var(--tabbar-h) + 24px);
+            height: fit-content;
+            grid-area: timeline;
+        }
+
+        .timeline .block-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 0 0 12px 0;
+        }
+
+        .timeline-list {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            padding: 12px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--muted);
+        }
     </style>
 </head>
 
@@ -990,6 +1363,18 @@
             </button>
             <span class="subtitle">de‑sensationalized news</span>
         </div>
+
+        <div class="search-container" id="searchContainer">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search news..."
+                aria-label="Search articles">
+            <button id="searchClear" class="search-clear" aria-label="Clear search">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
         <div class="actions">
             <span id="lastFetched" class="time-tag" aria-live="polite">Fetched …</span>
             <button id="aboutBtn" title="About Infact" aria-label="About">
@@ -1043,96 +1428,170 @@
     <main class="page" role="main">
         <!-- Feed View -->
         <section id="feed" class="feed" aria-label="News feed">
+            <aside class="timeline" aria-label="Timeline">
+                <h3 class="block-title">Timeline</h3>
+                <div class="timeline-list">
+                    <div class="timeline-item"><span class="dot pos" aria-hidden="true"></span><span>Now</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>1h</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>3h</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>6h</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>12h</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>1d</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>3d</span></div>
+                    <div class="timeline-item"><span class="dot neu" aria-hidden="true"></span><span>1w</span></div>
+                </div>
+            </aside>
             <div id="feedGrid" class="grid"></div>
 
-            <!-- Feed Sidebar -->
-            <aside class="feed-sidebar">
-                <h3 class="block-title">News Providers</h3>
-                <div class="providers-list">
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">R</div>
-                            <div>
-                                <div class="provider-name">Reuters</div>
-                                <div class="provider-domain">reuters.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">Owned by Thomson Reuters Corporation</div>
-                            <div class="provider-type">International news agency, financial data</div>
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results">
+                <div class="search-results-header">
+                    <div id="searchResultsCount" class="search-results-count"></div>
+                </div>
+                <div id="searchResultsList" class="search-results-list"></div>
+            </div>
+
+            <!-- Search Sidebar (Left during search) -->
+            <aside class="search-sidebar">
+                <h3 class="block-title">Search Filters</h3>
+                <div id="searchFilters" class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Date Range</label>
+                        <select id="dateRangeFilter" class="filter-select">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Past Week</option>
+                            <option value="month">Past Month</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                        <div id="customDateInputs" class="date-inputs" style="display: none;">
+                            <input type="date" id="dateFrom" class="date-input" aria-label="From date">
+                            <input type="date" id="dateTo" class="date-input" aria-label="To date">
                         </div>
                     </div>
 
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">G</div>
-                            <div>
-                                <div class="provider-name">The Guardian</div>
-                                <div class="provider-domain">theguardian.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">Guardian Media Group (Scott Trust)</div>
-                            <div class="provider-type">Independent, reader-funded journalism</div>
+                    <div class="filter-group">
+                        <label class="filter-label">Scope</label>
+                        <div class="filter-toggle">
+                            <button id="scopeLocal" class="active" data-scope="local">Local</button>
+                            <button id="scopeIntl" data-scope="international">International</button>
                         </div>
                     </div>
 
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">W</div>
-                            <div>
-                                <div class="provider-name">Wall Street Journal</div>
-                                <div class="provider-domain">wsj.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">News Corp (Rupert Murdoch)</div>
-                            <div class="provider-type">Business and financial news</div>
-                        </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Category</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="trending">Trending</option>
+                            <option value="blindspot">Blindspot</option>
+                            <option value="local">Local</option>
+                            <option value="international">International</option>
+                        </select>
                     </div>
 
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">B</div>
-                            <div>
-                                <div class="provider-name">Bloomberg</div>
-                                <div class="provider-domain">bloomberg.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">Bloomberg L.P. (Michael Bloomberg)</div>
-                            <div class="provider-type">Financial news and data services</div>
-                        </div>
-                    </div>
-
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">A</div>
-                            <div>
-                                <div class="provider-name">Associated Press</div>
-                                <div class="provider-domain">apnews.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">Non-profit cooperative</div>
-                            <div class="provider-type">Wire service, member-owned</div>
-                        </div>
-                    </div>
-
-                    <div class="provider">
-                        <div class="provider-header">
-                            <div class="favicon">F</div>
-                            <div>
-                                <div class="provider-name">Financial Times</div>
-                                <div class="provider-domain">ft.com</div>
-                            </div>
-                        </div>
-                        <div class="provider-details">
-                            <div class="provider-owner">Nikkei Inc.</div>
-                            <div class="provider-type">International business journalism</div>
-                        </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Source Bias</label>
+                        <select id="biasFilter" class="filter-select">
+                            <option value="all">All Sources</option>
+                            <option value="balanced">Balanced Coverage</option>
+                            <option value="positive">Positive Tone</option>
+                            <option value="neutral">Neutral Tone</option>
+                            <option value="negative">Critical Tone</option>
+                        </select>
                     </div>
                 </div>
+            </aside>
+
+            <!-- Feed Sidebar (Right) -->
+            <aside class="feed-sidebar">
+                <h3 class="block-title">News Providers</h3>
+                <div class="providers-list"></div>
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">R</div>
+                        <div>
+                            <div class="provider-name">Reuters</div>
+                            <div class="provider-domain">reuters.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">Owned by Thomson Reuters Corporation</div>
+                        <div class="provider-type">International news agency, financial data</div>
+                    </div>
+                </div>
+
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">G</div>
+                        <div>
+                            <div class="provider-name">The Guardian</div>
+                            <div class="provider-domain">theguardian.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">Guardian Media Group (Scott Trust)</div>
+                        <div class="provider-type">Independent, reader-funded journalism</div>
+                    </div>
+                </div>
+
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">W</div>
+                        <div>
+                            <div class="provider-name">Wall Street Journal</div>
+                            <div class="provider-domain">wsj.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">News Corp (Rupert Murdoch)</div>
+                        <div class="provider-type">Business and financial news</div>
+                    </div>
+                </div>
+
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">B</div>
+                        <div>
+                            <div class="provider-name">Bloomberg</div>
+                            <div class="provider-domain">bloomberg.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">Bloomberg L.P. (Michael Bloomberg)</div>
+                        <div class="provider-type">Financial news and data services</div>
+                    </div>
+                </div>
+
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">A</div>
+                        <div>
+                            <div class="provider-name">Associated Press</div>
+                            <div class="provider-domain">apnews.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">Non-profit cooperative</div>
+                        <div class="provider-type">Wire service, member-owned</div>
+                    </div>
+                </div>
+
+                <div class="provider">
+                    <div class="provider-header">
+                        <div class="favicon">F</div>
+                        <div>
+                            <div class="provider-name">Financial Times</div>
+                            <div class="provider-domain">ft.com</div>
+                        </div>
+                    </div>
+                    <div class="provider-details">
+                        <div class="provider-owner">Nikkei Inc.</div>
+                        <div class="provider-type">International business journalism</div>
+                    </div>
+                </div>
+                </div>
+
+
             </aside>
         </section>
 
@@ -1190,7 +1649,7 @@
             <h2>About Infact</h2>
             <p>Infact aggregates reporting and foregrounds verifiable facts. The interface intentionally de‑emphasizes
                 sensational framing.</p>
-            <p class="muted">Design cues: are.na’s wireframe minimalism meets Swiss grid discipline. Colors are
+            <p class="muted">Design cues: are.na's wireframe minimalism meets Swiss grid discipline. Colors are
                 monochrome, with a restrained deep‑brown accent.</p>
             <div class="modal-actions">
                 <button data-close="about">Close</button>
@@ -1220,258 +1679,32 @@
         // ---------------------------------------------------------
         // Data (dummy but realistic, news-related)
         // ---------------------------------------------------------
-        const articles = [
-            {
-                id: 'a1',
-                title: 'Global Shipping Disruption Eases as Red Sea Convoys Expand',
-                excerpt: 'Transit times fall and insurers trim war-risk surcharges as escorted lanes reduce detours around Africa.',
-                bullets: [
-                    'Average Asia–EU routes shortened by 8–12% week over week',
-                    'Freight rates decline for a third consecutive week',
-                    'Insurers begin revising temporary surcharges downward'
-                ],
-                category: ['Trending', 'International'],
-                time: hoursAgo(2),
-                imageQuery: 'cargo ship container port',
-                sources: [
-                    { name: 'Lloyd’s List', domain: 'lloydslist.com', bias: 'neu', musings: 'Operational metrics, not opinion: ports are clearing backlogs while schedule reliability improves gradually.' },
-                    { name: 'Reuters', domain: 'reuters.com', bias: 'pos', musings: 'Framing emphasizes stabilization and the positive impact on input costs.' },
-                    { name: 'The Guardian', domain: 'theguardian.com', bias: 'neg', musings: 'Notes residual security risks and the fragility of a convoy‑dependent system.' }
-                ],
-                content: [
-                    'Escorted shipping lanes through the Red Sea have expanded, shortening detours that had sent vessels around the Cape of Good Hope. Carriers report improved schedule reliability and fewer blank sailings.',
-                    'Analysts say lower freight rates could feed through to consumer prices with a lag, though logistics managers caution that port labor availability remains a swing factor.'
-                ],
-                context: 'Convoy capacity increased after insurers and carriers agreed on standardized risk protocols. The adjustment follows months of rerouting that added 10–14 days to typical journeys. Maritime security firms now coordinate with naval forces from multiple nations to provide escort services through designated corridors. The system operates on fixed schedules with predetermined assembly points, allowing carriers to plan capacity more effectively than during the initial disruption period.',
-                background: 'Earlier disruptions triggered a surge in container rates not seen since the pandemic era. Shippers diversified modes and spread orders to hedge against delays. The Red Sea route typically handles 12% of global trade and 30% of container traffic between Asia and Europe. When attacks began targeting commercial vessels, insurance premiums spiked by 300-500% for transits through the region. Major carriers like Maersk and MSC initially suspended services entirely, forcing cargo onto longer routes around Africa that added significant time and fuel costs to supply chains.',
-                coverage: 'High — corroborated by multiple shipping trackers and carrier updates.'
-            },
-            {
-                id: 'a2',
-                title: 'U.S. Jobs Growth Slows; Unemployment Rate Holds Steady',
-                excerpt: 'Hiring moderates while participation edges up, pointing to a cooler but resilient labor market.',
-                bullets: [
-                    'Nonfarm payrolls rise modestly; revisions subtract from prior months',
-                    'Wage growth eases on a 3‑month annualized basis',
-                    'Participation ticks higher among prime‑age workers'
-                ],
-                category: ['Trending', 'All'],
-                time: hoursAgo(5),
-                imageQuery: 'office workers business meeting',
-                sources: [
-                    { name: 'BLS Release', domain: 'bls.gov', bias: 'neu', musings: 'Tables and series notes provide the baseline. Interpret cautiously around seasonal adjustments.' },
-                    { name: 'WSJ', domain: 'wsj.com', bias: 'pos', musings: 'Interprets a cooler print as lowering odds of an overheated economy.' },
-                    { name: 'Bloomberg', domain: 'bloomberg.com', bias: 'neg', musings: 'Stresses that revisions point to slower momentum than previously reported.' }
-                ],
-                content: [
-                    'The latest employment report shows slower job creation alongside steady unemployment, suggesting demand and supply are moving closer to balance.',
-                    'Economists highlight easing wage growth as consistent with disinflation, while noting sectoral divergences between services and goods.'
-                ],
-                context: 'Labor market rebalancing has been a policy goal after an extended period of tightness and rapid pay increases. Federal Reserve officials have cited employment conditions as a key factor in monetary policy decisions, seeking a "soft landing" where demand cools without triggering widespread layoffs. The current trajectory suggests the job market is moving toward pre-pandemic norms, though regional variations persist across industries and skill levels.',
-                background: 'Earlier in the cycle, vacancy rates far outpaced available workers, lifting wages and turnover. Recent data signal normalization. During 2021-2022, job openings reached historic highs of nearly 12 million while unemployment fell below 3.5%. This imbalance drove wage growth above 5% annually and created widespread labor shortages. The "Great Resignation" saw record quit rates as workers leveraged tight conditions for better opportunities. Policymakers worried this dynamic could entrench inflation expectations and create wage-price spirals.',
-                coverage: 'High — official release plus broad secondary reporting.'
-            },
-            {
-                id: 'a3',
-                title: 'Seoul Deploys Odd‑Even Traffic Limits Amid Smog Alert',
-                excerpt: 'City officials activate temporary curbs as fine particulate levels breach targets for a second day.',
-                bullets: [
-                    'Public transit frequencies boosted during peak hours',
-                    'Construction dust controls tightened across urban core',
-                    'Health advisories issued for children and older adults'
-                ],
-                category: ['International'],
-                time: hoursAgo(9),
-                imageQuery: 'seoul city traffic pollution',
-                sources: [
-                    { name: 'Yonhap', domain: 'yna.co.kr', bias: 'neu', musings: 'Leads with municipal measures and specific PM2.5 readings.' },
-                    { name: 'Korea Herald', domain: 'koreaherald.com', bias: 'pos', musings: 'Views intervention as proportionate to the health risk.' },
-                    { name: 'Opinion Column', domain: 'op-ed.local', bias: 'neg', musings: 'Raises cost concerns and questions about enforcement fairness.' }
-                ],
-                content: [
-                    'Authorities in Seoul introduced odd‑even driving rules following back‑to‑back days of elevated particulate pollution. The policy coincides with increased subway frequencies and advisories for sensitive groups.',
-                    'Health officials recommend limiting strenuous outdoor activity until levels normalize.'
-                ],
-                context: 'Seasonal weather patterns and regional emissions can converge to raise PM2.5 readings across metropolitan areas. Seoul\'s geography, surrounded by mountains, can trap pollutants during certain atmospheric conditions. Cross-border pollution from industrial regions in China also contributes to baseline levels, making local interventions only partially effective. Weather forecasts now include air quality predictions to help authorities prepare emergency measures.',
-                background: 'Traffic restrictions have been used intermittently in major cities during acute pollution events, with mixed evidence on effectiveness. Seoul has implemented various pollution control measures since the 1990s, including low emission zones and vehicle inspection programs. The city\'s air quality has generally improved over decades, but episodic spikes still occur during unfavorable meteorological conditions. Similar odd-even driving schemes have been tested in Beijing, Mexico City, and Paris with varying degrees of success in reducing both traffic and emissions.',
-                coverage: 'Medium — official notices with preliminary air quality data.'
-            },
-            {
-                id: 'a4',
-                title: 'Texas Grid Hits Summer Peak; Rolling Blackouts Averted',
-                excerpt: 'Reserve margins tightened in late afternoon but demand response and wind output stabilized the system.',
-                bullets: [
-                    'Peak demand set a new seasonal record',
-                    'Emergency alerts stopped short of load shedding',
-                    'Demand response shaved several hundred megawatts'
-                ],
-                category: ['Local', 'Trending'],
-                time: hoursAgo(3),
-                imageQuery: 'power lines electrical grid texas',
-                sources: [
-                    { name: 'ERCOT', domain: 'ercot.com', bias: 'neu', musings: 'Operational dashboards and post‑event report outline reserve margins and contributing resources.' },
-                    { name: 'Texas Tribune', domain: 'texastribune.org', bias: 'pos', musings: 'Highlights the role of demand response and diversified generation.' },
-                    { name: 'Local Blog', domain: 'gridwatch.blog', bias: 'neg', musings: 'Questions whether reserve estimates were sufficiently conservative.' }
-                ],
-                content: [
-                    'Texas set a new summer peak as temperatures surged, but grid operators avoided rolling outages. Wind output and voluntary conservation helped maintain reserves.',
-                    'Analysts say the episode illustrates both the system’s vulnerabilities and the benefits of resource diversity.'
-                ],
-                context: 'Peak events typically occur during sustained heatwaves when air‑conditioning loads are highest. Texas operates its own electrical grid largely separate from neighboring states, limiting import options during stress periods. The state\'s rapid population and economic growth has increased baseline demand, while extreme weather events have become more frequent. Grid operators now use sophisticated forecasting to predict demand several days in advance.',
-                background: 'After past outages, the region added capacity and tools to manage demand spikes. The February 2021 winter storm caused widespread blackouts lasting several days, leading to regulatory changes and weatherization requirements. ERCOT has since expanded its demand response programs, allowing large industrial users to reduce consumption in exchange for payments. The grid has also added battery storage and improved coordination between renewable generators and traditional power plants to better manage supply variability.',
-                coverage: 'High — operator data and multiple independent trackers.'
-            },
-            {
-                id: 'a5',
-                title: 'WHO Monitors Influenza Cluster in Southeast Asia',
-                excerpt: 'Preliminary sequencing suggests a seasonal lineage; no unusual severity reported.',
-                bullets: [
-                    'Cases linked to a single workplace and two households',
-                    'No travel advisory changes as of this update',
-                    'Health authorities emphasize vaccination and hygiene'
-                ],
-                category: ['International'],
-                time: hoursAgo(11),
-                imageQuery: 'medical laboratory health research',
-                sources: [
-                    { name: 'WHO Update', domain: 'who.int', bias: 'neu', musings: 'Event‑based surveillance note with lineage and severity indicators.' },
-                    { name: 'Local Health Dept', domain: 'moh.gov', bias: 'pos', musings: 'Straightforward risk communication and preventive guidance.' },
-                    { name: 'Commentary', domain: 'healthforum.net', bias: 'neg', musings: 'Cautions against complacency given past surprises; calls for rapid transparency.' }
-                ],
-                content: [
-                    'An influenza cluster under review shows clinical profiles consistent with seasonal flu. Authorities report no changes to travel or trade recommendations.',
-                    'Public health messaging focuses on vaccination, hand hygiene, and staying home while symptomatic.'
-                ],
-                context: 'Clusters often emerge in workplaces and schools before broader community spread. Contact tracing helps identify transmission patterns and assess whether cases represent spillover from seasonal circulation or a novel variant. The workplace setting allows for detailed exposure mapping since employees typically have regular schedules and defined interactions. Health authorities use cluster investigations to refine public health guidance and determine if enhanced surveillance is warranted.',
-                background: 'Global surveillance networks share genomic data to track influenza lineages and inform vaccine composition. The WHO coordinates a system of reference laboratories that monitor circulating strains and assess their pandemic potential. Seasonal influenza typically causes 3-5 million severe cases globally each year, with periodic emergence of variants that can evade existing immunity. The 2009 H1N1 pandemic demonstrated how quickly novel strains can spread, leading to improved early warning systems and response protocols.',
-                coverage: 'Medium — formal update plus local health notices.'
-            },
-            {
-                id: 'a6',
-                title: 'Flood Defenses Hold in Northern Italy After Weekend Storms',
-                excerpt: 'Temporary barriers and upstream retention limited overflow in several river basins.',
-                bullets: [
-                    'Localized flooding reported but no major levee failures',
-                    'Rail service resumed on key regional lines',
-                    'Authorities keep watch with soils still saturated'
-                ],
-                category: ['International'],
-                time: hoursAgo(20),
-                imageQuery: 'flood water river italy storm',
-                sources: [
-                    { name: 'ANSA', domain: 'ansa.it', bias: 'neu', musings: 'Situation updates with civil protection quotes and rail service notes.' },
-                    { name: 'Local Paper', domain: 'gazetta.local', bias: 'pos', musings: 'Credits infrastructure upgrades made after prior floods.' },
-                    { name: 'Advocacy Group', domain: 'riverswatch.eu', bias: 'neg', musings: 'Argues that long‑term adaptation remains underfunded.' }
-                ],
-                content: [
-                    'Heavy weekend rain tested flood defenses across parts of northern Italy, where emergency barriers and upstream retention basins helped prevent larger overflows.',
-                    'Transit disruption eased as crews cleared debris and inspected track beds.'
-                ],
-                context: 'Hydrologists track basin saturation as a key determinant of runoff risk. When soils are already saturated from previous rainfall, additional precipitation runs off more quickly rather than being absorbed, increasing flood potential. River basin management involves coordinating upstream retention areas, urban drainage systems, and downstream flood defenses. Real-time monitoring networks provide data on water levels, soil moisture, and precipitation to help predict flood timing and severity.',
-                background: 'Recent investments targeted choke points identified after past flood events. Northern Italy has experienced several major floods in recent decades, including devastating events in 1994, 2000, and 2014 that caused billions in damages. Climate change projections suggest more intense precipitation events, prompting upgrades to levees, expansion of retention basins, and improved early warning systems. The European Union has provided funding for flood risk management projects as part of broader climate adaptation efforts.',
-                coverage: 'Medium — field reports and transport bulletins.'
-            },
-            {
-                id: 'a7',
-                title: 'Teachers Union Reaches Tentative Deal in Chicago',
-                excerpt: 'Agreement includes phased pay increases and classroom support commitments pending ratification.',
-                bullets: [
-                    'Tentative agreement heads to membership vote',
-                    'District outlines hiring for aides and counselors',
-                    'Make‑up days to be scheduled if needed'
-                ],
-                category: ['Local'],
-                time: hoursAgo(7),
-                imageQuery: 'teacher classroom school education',
-                sources: [
-                    { name: 'Chicago Sun‑Times', domain: 'chicago.suntimes.com', bias: 'neu', musings: 'Focuses on terms and ratification timeline.' },
-                    { name: 'District Brief', domain: 'cps.edu', bias: 'pos', musings: 'Emphasizes student support staffing and budget prudence.' },
-                    { name: 'Opinion', domain: 'edwatch.blog', bias: 'neg', musings: 'Warns about long‑term fiscal pressures.' }
-                ],
-                content: [
-                    'Union leaders and district officials announced a tentative contract that would raise pay over several years and add support staff in high‑need schools.',
-                    'If ratified, the deal would conclude weeks of intermittent job actions.'
-                ],
-                context: 'Collective bargaining in large districts often centers on both wages and student services. Chicago Public Schools serves over 340,000 students across 600+ schools, making it the third-largest district in the US. Teacher shortages in high-need schools have been a persistent challenge, with turnover rates above national averages in certain areas. Union negotiations typically occur every 3-4 years and can significantly impact district operations and student outcomes.',
-                background: 'Previous contracts established class size and support staff targets that continue to shape negotiations. The Chicago Teachers Union has historically been one of the more activist teacher unions, conducting strikes in 2012 and 2019 over issues including pay, class sizes, and school resources. The district faces ongoing budget pressures from declining enrollment, pension obligations, and facility maintenance needs. State funding formulas and federal programs provide significant portions of the budget, creating additional complexity in contract negotiations.',
-                coverage: 'High — multiple local outlets and official statements.'
-            },
-            {
-                id: 'a8',
-                title: 'Steelmakers Accelerate Switch to Electric Arc Furnaces in Europe',
-                excerpt: 'Producers cite cost and emissions benefits as orders for EAF units rise.',
-                bullets: [
-                    'Two major plants announce conversions through 2027',
-                    'Scrap availability remains a key constraint',
-                    'Policy incentives tied to lower‑carbon output'
-                ],
-                category: ['International'],
-                time: hoursAgo(14),
-                imageQuery: 'steel factory industrial furnace',
-                sources: [
-                    { name: 'FT', domain: 'ft.com', bias: 'pos', musings: 'Frames shift as a competitiveness play in a carbon‑constrained market.' },
-                    { name: 'Trade Journal', domain: 'steelinsider.eu', bias: 'neu', musings: 'Details capacity timelines and equipment suppliers.' },
-                    { name: 'NGO Blog', domain: 'climateaction.eu', bias: 'neg', musings: 'Calls for stronger safeguards on scrap sourcing and lifecycle accounting.' }
-                ],
-                content: [
-                    'European producers are advancing plans to replace blast furnaces with electric arc furnaces, citing lower emissions and operating flexibility.',
-                    'Analysts note that scrap markets and power prices will influence the pace and economics of the transition.'
-                ],
-                context: 'Industry decarbonization roadmaps lean on proven technologies while piloting hydrogen and direct reduction. Steel production accounts for roughly 7% of global CO2 emissions, making it a priority sector for climate action. Electric arc furnaces can reduce emissions by 50-80% compared to traditional blast furnaces when powered by clean electricity. The transition requires significant capital investment and coordination with electricity grid operators to manage increased power demand.',
-                background: 'Policy frameworks increasingly reward lower‑carbon materials in public procurement. The European Union\'s carbon border adjustment mechanism will impose costs on high-carbon steel imports starting in 2026, creating competitive advantages for cleaner production. Major automakers and construction companies have begun setting procurement targets for low-carbon steel as part of their own sustainability commitments. Government infrastructure projects increasingly specify environmental criteria in bidding processes, driving demand for cleaner materials.',
-                coverage: 'Medium — company releases corroborated by trade data.'
-            },
-            {
-                id: 'a9',
-                title: 'Blindspot: Lead Pipe Replacement Lags in Midwestern Towns',
-                excerpt: 'Funding approvals outpace on‑the‑ground progress in smaller systems with limited staffing.',
-                bullets: [
-                    'Contractor shortages slow replacement schedules',
-                    'Mapping gaps hinder project planning',
-                    'Interim filters remain essential for at‑risk homes'
-                ],
-                category: ['Blindspot', 'Local'],
-                time: hoursAgo(26),
-                imageQuery: 'water pipes plumbing infrastructure',
-                sources: [
-                    { name: 'AP Local', domain: 'apnews.com', bias: 'neu', musings: 'Documents county‑by‑county variance and staffing constraints.' },
-                    { name: 'Civic Lab', domain: 'civlab.org', bias: 'neg', musings: 'Argues transparency tools are insufficient for residents tracking progress.' },
-                    { name: 'Public Works', domain: 'publicworks.city', bias: 'pos', musings: 'Notes steady bidding interest as supply chains normalize.' }
-                ],
-                content: [
-                    'Several Midwestern towns report slow progress replacing lead service lines despite approved funding. Staffing and contractor availability remain primary bottlenecks.',
-                    'Officials urge residents to use certified filters until lines are verified and replaced.'
-                ],
-                context: 'Lead exposure risks vary with pipe materials, water chemistry, and household plumbing. Lead service lines were commonly installed before 1986 when their use was banned, with an estimated 6-10 million still in service nationwide. Water treatment can reduce lead leaching through pH adjustment and corrosion control, but complete removal requires physical replacement of pipes. Children are particularly vulnerable to lead exposure, which can cause developmental delays and learning difficulties even at low levels.',
-                background: 'Federal and state programs provide funds, but smaller utilities face administrative burdens. The Infrastructure Investment and Jobs Act allocated $15 billion specifically for lead service line replacement, with additional funding from state revolving loan programs. However, many small utilities lack the engineering staff and project management capacity to efficiently access and deploy these funds. Mapping existing lead lines remains a challenge since many utilities have incomplete records of pipe materials installed decades ago.',
-                coverage: 'Medium — local reports with state dashboards.'
-            },
-            {
-                id: 'a10',
-                title: 'Food Inflation Cools, But Pantry Staples Remain Elevated',
-                excerpt: 'Year‑over‑year increases ease while multi‑year comparisons show persistently higher baseline prices.',
-                bullets: [
-                    'Monthly index shows broad deceleration',
-                    'Staples like rice and cooking oil still above 2021 levels',
-                    'Promotions return as supply chains normalize'
-                ],
-                category: ['Blindspot', 'All'],
-                time: hoursAgo(30),
-                imageQuery: 'grocery store food prices shopping',
-                sources: [
-                    { name: 'Stats Agency', domain: 'statsoffice.gov', bias: 'neu', musings: 'Headline and core food components show continued deceleration.' },
-                    { name: 'Grocery Trade', domain: 'grocertrade.com', bias: 'pos', musings: 'Retailers increase promotions, citing improved availability.' },
-                    { name: 'Consumer Group', domain: 'buyersvoice.org', bias: 'neg', musings: 'Points to affordability gaps despite slower inflation.' }
-                ],
-                content: [
-                    'Food price inflation continues to cool on a yearly basis, but cumulative increases leave many pantry items well above pre‑pandemic levels.',
-                    'Retail promotions are more frequent, though the absolute price point remains a concern for lower‑income households.'
-                ],
-                context: 'Commodity and freight costs have moderated, while labor and packaging remain material inputs.',
-                background: 'Household budgets adjusted during higher inflation periods often take time to normalize after prices plateau.',
-                coverage: 'High — official indices and industry data.'
+        let articles = [];
+
+        async function loadArticles() {
+            try {
+                const res = await fetch('articles.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error(`Failed to fetch articles.json: ${res.status}`);
+                const raw = await res.json();
+                articles = raw.map(item => ({
+                    id: item.id,
+                    title: item.title,
+                    excerpt: item.excerpt,
+                    bullets: item.bullets || [],
+                    category: item.category || [],
+                    time: hoursAgo(Number(item.hoursAgo || 0)),
+                    imageQuery: item.imageQuery || '',
+                    sources: item.sources || [],
+                    content: item.content || [],
+                    context: item.context || '',
+                    background: item.background || '',
+                    coverage: item.coverage || ''
+                }));
+            } catch (err) {
+                console.error('Failed to load articles:', err);
+                articles = [];
             }
-        ];
+        }
 
         // ---------------------------------------------------------
         // Utilities
@@ -1483,25 +1716,116 @@
 
         // Image loading - try multiple sources for better reliability
         function getUnsplashImage(query, width = 400, height = 225) {
-            // Try Unsplash API first, fallback to Picsum
-            const encodedQuery = encodeURIComponent(query);
-            return `https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=${width}&h=${height}&fit=crop&crop=center`;
+            // Primary (may 503 intermittently). Keep but provide fallbacks.
+            const encodedQuery = encodeURIComponent(query || 'news');
+            return `https://source.unsplash.com/${width}x${height}/?${encodedQuery}`;
+        }
+
+        // Build a concise, content-relevant keyword string for image search
+        function buildImageQuery(article) {
+            if (article.imageQuery && article.imageQuery.trim()) return article.imageQuery.trim();
+            const parts = [];
+            if (article.title) parts.push(article.title);
+            if (Array.isArray(article.bullets) && article.bullets.length > 0) parts.push(article.bullets[0]);
+            if (Array.isArray(article.category)) parts.push(...article.category.slice(0, 1));
+            if (Array.isArray(article.sources) && article.sources.length > 0) parts.push(article.sources[0].name || '');
+            const text = parts.join(' ').toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            const tokens = text.split(' ').filter(Boolean);
+            // Keep the first 5-7 tokens to avoid over-broad queries
+            const limited = tokens.slice(0, 7).join(' ');
+            return limited || 'news';
+        }
+
+        // Build a list of candidate image URLs to try, in order
+        function getImageCandidates(article, width = 400, height = 225) {
+            const keyword = buildImageQuery(article);
+            const seed = encodeURIComponent(article.id || keyword);
+            const encoded = encodeURIComponent(keyword);
+            const candidates = [];
+
+            // 1) Explicit URL if provided in JSON
+            if (article.imageUrl && /^https?:\/\//i.test(article.imageUrl)) {
+                candidates.push(article.imageUrl);
+            }
+            // 2) Unsplash source (random by query)
+            candidates.push(getUnsplashImage(keyword, width, height));
+            // 3) LoremFlickr (query-based)
+            candidates.push(`https://loremflickr.com/${width}/${height}/${encoded}`);
+            // 4) Picsum with deterministic seed (doesn't support query)
+            candidates.push(`https://picsum.photos/seed/${seed}/${width}/${height}`);
+            // 5) Text placeholder
+            candidates.push(`https://placehold.co/${width}x${height}?text=${encodeURIComponent(keyword)}`);
+            return candidates;
+        }
+
+        // Wikimedia Commons caching to avoid repeated lookups
+        const wikiThumbCache = new Map();
+
+        // Wikimedia Commons: fetch a content-relevant thumbnail for the query
+        async function fetchWikimediaThumb(query, width = 400, height = 225) {
+            try {
+                const key = `${query}::${width}x${height}`;
+                if (wikiThumbCache.has(key)) return wikiThumbCache.get(key);
+                const maxDim = Math.max(width, height);
+                const api = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=${maxDim}&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrlimit=1`;
+                const res = await fetch(api, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const data = await res.json();
+                const pages = data && data.query && data.query.pages ? Object.values(data.query.pages) : [];
+                const first = pages[0];
+                const url = first && first.thumbnail && first.thumbnail.source ? first.thumbnail.source : null;
+                wikiThumbCache.set(key, url || null);
+                return url || null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Build candidates with Wikimedia (if available) prioritized
+        async function getImageCandidatesAsync(article, width = 400, height = 225) {
+            const keyword = buildImageQuery(article);
+            const base = getImageCandidates(article, width, height);
+            const wiki = await fetchWikimediaThumb(keyword, width, height);
+            const list = [];
+            if (wiki) list.push(wiki);
+            // Append base list, avoiding duplicates
+            base.forEach(u => { if (!list.includes(u)) list.push(u); });
+            return list;
+        }
+
+        // Try loading the first image that succeeds
+        function loadFirstImage(urls) {
+            return new Promise((resolve, reject) => {
+                let index = 0;
+                function tryNext() {
+                    if (index >= urls.length) {
+                        return reject(new Error('All image sources failed'));
+                    }
+                    const url = urls[index++];
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = () => {
+                        console.warn('Image failed, trying fallback:', url);
+                        tryNext();
+                    };
+                    img.src = url;
+                }
+                tryNext();
+            });
+        }
+
+        // Provide a single helper to resolve an article image based on its imageQuery/title
+        function getArticleImage(article, width = 400, height = 225) {
+            const q = article.imageQuery || article.title || 'news';
+            return getUnsplashImage(q, width, height);
         }
 
         // Predefined images for each article to ensure they work
-        const articleImages = {
-            'a1': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=225&fit=crop&crop=center', // cargo ship
-            'a2': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=225&fit=crop&crop=center', // office workers
-            'a3': 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=400&h=225&fit=crop&crop=center', // city traffic
-            'a4': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=225&fit=crop&crop=center', // power lines
-            'a5': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=225&fit=crop&crop=center', // medical lab
-            'a6': 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=225&fit=crop&crop=center', // flood water
-            'a7': 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=225&fit=crop&crop=center', // classroom
-            'a8': 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&h=225&fit=crop&crop=center', // steel factory
-            'a9': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=225&fit=crop&crop=center', // pipes
-            'a10': 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=225&fit=crop&crop=center' // grocery store
-        };
-
+        // (No longer required when loading from JSON + using imageQuery)
+        // ... existing code ...
         function loadImage(src) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
@@ -1580,6 +1904,288 @@
         }
 
         // ---------------------------------------------------------
+        // Search functionality
+        // ---------------------------------------------------------
+        let searchQuery = '';
+        let searchFilters = {
+            dateRange: 'all',
+            dateFrom: '',
+            dateTo: '',
+            scope: 'local',
+            category: 'all',
+            bias: 'all'
+        };
+
+        function performSearch(query) {
+            if (!query.trim()) {
+                hideSearchResults();
+                return;
+            }
+
+            const filtered = articles.filter(article => {
+                // Text search
+                const searchText = query.toLowerCase();
+                const titleMatch = article.title.toLowerCase().includes(searchText);
+                const excerptMatch = article.excerpt.toLowerCase().includes(searchText);
+                const bulletMatch = article.bullets.some(bullet => bullet.toLowerCase().includes(searchText));
+
+                if (!titleMatch && !excerptMatch && !bulletMatch) return false;
+
+                // Date filter
+                if (searchFilters.dateRange !== 'all') {
+                    const articleDate = new Date(article.time);
+                    const now = new Date();
+
+                    switch (searchFilters.dateRange) {
+                        case 'today':
+                            if (articleDate.toDateString() !== now.toDateString()) return false;
+                            break;
+                        case 'week':
+                            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                            if (articleDate < weekAgo) return false;
+                            break;
+                        case 'month':
+                            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                            if (articleDate < monthAgo) return false;
+                            break;
+                        case 'custom':
+                            if (searchFilters.dateFrom && articleDate < new Date(searchFilters.dateFrom)) return false;
+                            if (searchFilters.dateTo && articleDate > new Date(searchFilters.dateTo)) return false;
+                            break;
+                    }
+                }
+
+                // Scope filter
+                if (searchFilters.scope === 'local' && !article.category.includes('Local')) return false;
+                if (searchFilters.scope === 'international' && !article.category.includes('International')) return false;
+
+                // Category filter
+                if (searchFilters.category !== 'all') {
+                    const categoryMap = {
+                        'trending': 'Trending',
+                        'blindspot': 'Blindspot',
+                        'local': 'Local',
+                        'international': 'International'
+                    };
+                    if (!article.category.includes(categoryMap[searchFilters.category])) return false;
+                }
+
+                // Bias filter
+                if (searchFilters.bias !== 'all') {
+                    const biasCount = { pos: 0, neu: 0, neg: 0 };
+                    article.sources.forEach(s => biasCount[s.bias]++);
+
+                    switch (searchFilters.bias) {
+                        case 'balanced':
+                            if (biasCount.pos === 0 || biasCount.neg === 0) return false;
+                            break;
+                        case 'positive':
+                            if (biasCount.pos === 0) return false;
+                            break;
+                        case 'neutral':
+                            if (biasCount.neu === 0) return false;
+                            break;
+                        case 'negative':
+                            if (biasCount.neg === 0) return false;
+                            break;
+                    }
+                }
+
+                return true;
+            });
+
+            showSearchResults(filtered, query);
+        }
+
+        function showSearchResults(results, query) {
+            const searchResults = document.getElementById('searchResults');
+            const feedGrid = document.getElementById('feedGrid');
+            const searchContainer = document.getElementById('searchContainer');
+            const feedEl = document.getElementById('feed');
+
+            // Update UI state
+            searchResults.classList.add('active');
+            feedGrid.style.display = 'none';
+            searchContainer.classList.add('has-query');
+            feedEl.classList.add('search-active');
+
+            // Update results count
+            const countEl = document.getElementById('searchResultsCount');
+            countEl.textContent = `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`;
+
+            // Render results
+            const listEl = document.getElementById('searchResultsList');
+            listEl.innerHTML = '';
+
+            results.forEach((article, index) => {
+                const card = createSearchCard(article, index);
+                listEl.appendChild(card);
+            });
+        }
+
+        function createSearchCard(article, index) {
+            const card = el('div', {
+                class: 'search-card',
+                style: `animation-delay: ${index * 0.05}s`,
+                tabindex: '0'
+            });
+
+            // Image
+            const img = el('div', { class: 'img', 'aria-hidden': 'true' }, 'Loading...');
+            getImageCandidatesAsync(article, 120, 80)
+                .then(candidates => loadFirstImage(candidates))
+                .then(loadedImg => {
+                    img.innerHTML = '';
+                    img.appendChild(loadedImg);
+                })
+                .catch(() => {
+                    img.textContent = 'Image';
+                });
+
+            // Content
+            const content = el('div', { class: 'content' });
+            const title = el('h3', { class: 'title' }, article.title);
+            const excerpt = el('p', { class: 'excerpt' }, article.excerpt);
+
+            const meta = el('div', { class: 'meta' });
+            const sources = el('div', { class: 'sources' },
+                ...article.sources.slice(0, 3).map(s =>
+                    el('div', { class: 'favicon', title: s.domain }, faviconLetter(s.domain))
+                )
+            );
+            const timestamp = el('span', { class: 'timestamp' }, timeAgo(article.time));
+
+            meta.appendChild(sources);
+            meta.appendChild(timestamp);
+
+            content.appendChild(title);
+            content.appendChild(excerpt);
+            content.appendChild(meta);
+
+            // Sidebar info
+            const sidebarInfo = el('div', { class: 'sidebar-info' });
+            const biasCount = { neg: 0, neu: 0, pos: 0 };
+            article.sources.forEach(s => biasCount[s.bias]++);
+
+            const bias = el('div', { class: 'bias-mini', title: 'Source bias distribution' },
+                el('span', { class: 'dot neg', title: `Critical: ${biasCount.neg}` }),
+                el('span', { class: 'dot neu', title: `Neutral: ${biasCount.neu}` }),
+                el('span', { class: 'dot pos', title: `Positive: ${biasCount.pos}` })
+            );
+
+            sidebarInfo.appendChild(bias);
+
+            // Assemble card
+            card.appendChild(img);
+            card.appendChild(content);
+            card.appendChild(sidebarInfo);
+
+            // Click handler
+            card.addEventListener('click', () => openArticle(article.id));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openArticle(article.id);
+                }
+            });
+
+            return card;
+        }
+
+        function hideSearchResults() {
+            const searchResults = document.getElementById('searchResults');
+            const feedGrid = document.getElementById('feedGrid');
+            const searchContainer = document.getElementById('searchContainer');
+            const feedEl = document.getElementById('feed');
+
+            searchResults.classList.remove('active');
+            feedGrid.style.display = '';
+            searchContainer.classList.remove('has-query');
+            feedEl.classList.remove('search-active');
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            searchQuery = '';
+            hideSearchResults();
+        }
+
+        function bindSearchEvents() {
+            const searchInput = document.getElementById('searchInput');
+            const searchClear = document.getElementById('searchClear');
+
+            // Search input
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                performSearch(searchQuery);
+            });
+
+            // Clear button
+            searchClear.addEventListener('click', clearSearch);
+
+            // Escape key to clear
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                    searchInput.blur();
+                }
+            });
+
+            // Click outside to clear (on main content area)
+            document.addEventListener('click', (e) => {
+                if (searchQuery && !e.target.closest('.search-container') &&
+                    !e.target.closest('.search-results') && !e.target.closest('.search-filters')) {
+                    clearSearch();
+                }
+            });
+
+            // Filter controls
+            const dateRangeFilter = document.getElementById('dateRangeFilter');
+            const customDateInputs = document.getElementById('customDateInputs');
+            const dateFrom = document.getElementById('dateFrom');
+            const dateTo = document.getElementById('dateTo');
+            const scopeButtons = document.querySelectorAll('[data-scope]');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const biasFilter = document.getElementById('biasFilter');
+
+            dateRangeFilter.addEventListener('change', (e) => {
+                searchFilters.dateRange = e.target.value;
+                customDateInputs.style.display = e.target.value === 'custom' ? 'grid' : 'none';
+                if (searchQuery) performSearch(searchQuery);
+            });
+
+            dateFrom.addEventListener('change', (e) => {
+                searchFilters.dateFrom = e.target.value;
+                if (searchQuery) performSearch(searchQuery);
+            });
+
+            dateTo.addEventListener('change', (e) => {
+                searchFilters.dateTo = e.target.value;
+                if (searchQuery) performSearch(searchQuery);
+            });
+
+            scopeButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    scopeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    searchFilters.scope = btn.dataset.scope;
+                    if (searchQuery) performSearch(searchQuery);
+                });
+            });
+
+            categoryFilter.addEventListener('change', (e) => {
+                searchFilters.category = e.target.value;
+                if (searchQuery) performSearch(searchQuery);
+            });
+
+            biasFilter.addEventListener('change', (e) => {
+                searchFilters.bias = e.target.value;
+                if (searchQuery) performSearch(searchQuery);
+            });
+        }
+
+        // ---------------------------------------------------------
         // Rendering: Feed
         // ---------------------------------------------------------
         function renderFeed(filterTab = 'Trending') {
@@ -1614,25 +2220,20 @@
                     const body = el('div', { class: 'body' });
 
                     // Load image asynchronously
-                    const imageUrl = articleImages[a.id];
-                    if (imageUrl) {
-                        loadImage(imageUrl)
-                            .then(loadedImg => {
-                                img.innerHTML = '';
-                                img.classList.remove('loading');
-                                img.appendChild(loadedImg);
-                            })
-                            .catch(() => {
-                                // Fallback to a simple colored placeholder
-                                img.innerHTML = '';
-                                img.classList.remove('loading');
-                                img.style.background = `linear-gradient(135deg, #${Math.floor(Math.random() * 16777215).toString(16)}, #${Math.floor(Math.random() * 16777215).toString(16)})`;
-                                img.textContent = 'Image';
-                            });
-                    } else {
-                        img.textContent = 'Image';
-                        img.classList.remove('loading');
-                    }
+                    getImageCandidatesAsync(a, 400, 225)
+                        .then(candidates => loadFirstImage(candidates))
+                        .then(loadedImg => {
+                            img.innerHTML = '';
+                            img.classList.remove('loading');
+                            img.appendChild(loadedImg);
+                        })
+                        .catch(() => {
+                            // Fallback to a simple colored placeholder
+                            img.innerHTML = '';
+                            img.classList.remove('loading');
+                            img.style.background = `linear-gradient(135deg, #${Math.floor(Math.random() * 16777215).toString(16)}, #${Math.floor(Math.random() * 16777215).toString(16)})`;
+                            img.textContent = 'Image';
+                        });
                     const title = el('div', { class: 'title' }, a.title);
                     const excerpt = el('div', { class: 'excerpt' }, a.excerpt);
                     const bottom = el('div', { class: 'bottom' });
@@ -1750,7 +2351,7 @@
                 head.appendChild(pill);
 
                 const body = el('div', { class: 'source-body' });
-                const p = el('p', {}, `“${s.musings}”`);
+                const p = el('p', {}, `"${s.musings}"`);
                 body.appendChild(p);
 
                 head.addEventListener('click', () => toggleSource(src, body));
@@ -1950,17 +2551,22 @@
         // ---------------------------------------------------------
         // Init
         // ---------------------------------------------------------
-        function init() {
+        async function init() {
             loadTheme();
             applyPrefs();
+            await loadArticles();
             renderFeed('Trending');
             bindTabs();
+            bindSearchEvents();
             updateFetchedTime();
             initParallax();
 
             // Topbar actions
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            document.getElementById('logoBtn').addEventListener('click', backToFeed);
+            document.getElementById('logoBtn').addEventListener('click', () => {
+                clearSearch();
+                backToFeed();
+            });
             document.getElementById('backToFeed').addEventListener('click', backToFeed);
 
             // Expanders

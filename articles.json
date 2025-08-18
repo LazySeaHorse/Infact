@@ -1,0 +1,402 @@
+[
+    {
+        "id": "a1",
+        "title": "Global Shipping Disruption Eases as Red Sea Convoys Expand",
+        "excerpt": "Transit times fall and insurers trim war-risk surcharges as escorted lanes reduce detours around Africa.",
+        "bullets": [
+            "Average Asia–EU routes shortened by 8–12% week over week",
+            "Freight rates decline for a third consecutive week",
+            "Insurers begin revising temporary surcharges downward"
+        ],
+        "category": ["Trending", "International"],
+        "hoursAgo": 2,
+        "imageQuery": "cargo ship container port",
+        "sources": [
+            {
+                "name": "Lloyd's List",
+                "domain": "lloydslist.com",
+                "bias": "neu",
+                "musings": "Operational metrics, not opinion: ports are clearing backlogs while schedule reliability improves gradually."
+            },
+            {
+                "name": "Reuters",
+                "domain": "reuters.com",
+                "bias": "pos",
+                "musings": "Framing emphasizes stabilization and the positive impact on input costs."
+            },
+            {
+                "name": "The Guardian",
+                "domain": "theguardian.com",
+                "bias": "neg",
+                "musings": "Notes residual security risks and the fragility of a convoy‑dependent system."
+            }
+        ],
+        "content": [
+            "Escorted shipping lanes through the Red Sea have expanded, shortening detours that had sent vessels around the Cape of Good Hope. Carriers report improved schedule reliability and fewer blank sailings.",
+            "Analysts say lower freight rates could feed through to consumer prices with a lag, though logistics managers caution that port labor availability remains a swing factor."
+        ],
+        "context": "Convoy capacity increased after insurers and carriers agreed on standardized risk protocols. The adjustment follows months of rerouting that added 10–14 days to typical journeys. Maritime security firms now coordinate with naval forces from multiple nations to provide escort services through designated corridors. The system operates on fixed schedules with predetermined assembly points, allowing carriers to plan capacity more effectively than during the initial disruption period.",
+        "background": "Earlier disruptions triggered a surge in container rates not seen since the pandemic era. Shippers diversified modes and spread orders to hedge against delays. The Red Sea route typically handles 12% of global trade and 30% of container traffic between Asia and Europe. When attacks began targeting commercial vessels, insurance premiums spiked by 300-500% for transits through the region. Major carriers like Maersk and MSC initially suspended services entirely, forcing cargo onto longer routes around Africa that added significant time and fuel costs to supply chains.",
+        "coverage": "High — corroborated by multiple shipping trackers and carrier updates."
+    },
+    {
+        "id": "a2",
+        "title": "U.S. Jobs Growth Slows; Unemployment Rate Holds Steady",
+        "excerpt": "Hiring moderates while participation edges up, pointing to a cooler but resilient labor market.",
+        "bullets": [
+            "Nonfarm payrolls rise modestly; revisions subtract from prior months",
+            "Wage growth eases on a 3‑month annualized basis",
+            "Participation ticks higher among prime‑age workers"
+        ],
+        "category": ["Trending", "All"],
+        "hoursAgo": 5,
+        "imageQuery": "office workers business meeting",
+        "sources": [
+            {
+                "name": "BLS Release",
+                "domain": "bls.gov",
+                "bias": "neu",
+                "musings": "Tables and series notes provide the baseline. Interpret cautiously around seasonal adjustments."
+            },
+            {
+                "name": "WSJ",
+                "domain": "wsj.com",
+                "bias": "pos",
+                "musings": "Interprets a cooler print as lowering odds of an overheated economy."
+            },
+            {
+                "name": "Bloomberg",
+                "domain": "bloomberg.com",
+                "bias": "neg",
+                "musings": "Stresses that revisions point to slower momentum than previously reported."
+            }
+        ],
+        "content": [
+            "The latest employment report shows slower job creation alongside steady unemployment, suggesting demand and supply are moving closer to balance.",
+            "Economists highlight easing wage growth as consistent with disinflation, while noting sectoral divergences between services and goods."
+        ],
+        "context": "Labor market rebalancing has been a policy goal after an extended period of tightness and rapid pay increases. Federal Reserve officials have cited employment conditions as a key factor in monetary policy decisions, seeking a \"soft landing\" where demand cools without triggering widespread layoffs. The current trajectory suggests the job market is moving toward pre-pandemic norms, though regional variations persist across industries and skill levels.",
+        "background": "Earlier in the cycle, vacancy rates far outpaced available workers, lifting wages and turnover. Recent data signal normalization. During 2021-2022, job openings reached historic highs of nearly 12 million while unemployment fell below 3.5%. This imbalance drove wage growth above 5% annually and created widespread labor shortages. The \"Great Resignation\" saw record quit rates as workers leveraged tight conditions for better opportunities. Policymakers worried this dynamic could entrench inflation expectations and create wage-price spirals.",
+        "coverage": "High — official release plus broad secondary reporting."
+    },
+    {
+        "id": "a3",
+        "title": "Seoul Deploys Odd‑Even Traffic Limits Amid Smog Alert",
+        "excerpt": "City officials activate temporary curbs as fine particulate levels breach targets for a second day.",
+        "bullets": [
+            "Public transit frequencies boosted during peak hours",
+            "Construction dust controls tightened across urban core",
+            "Health advisories issued for children and older adults"
+        ],
+        "category": ["International"],
+        "hoursAgo": 9,
+        "imageQuery": "seoul city traffic pollution",
+        "sources": [
+            {
+                "name": "Yonhap",
+                "domain": "yna.co.kr",
+                "bias": "neu",
+                "musings": "Leads with municipal measures and specific PM2.5 readings."
+            },
+            {
+                "name": "Korea Herald",
+                "domain": "koreaherald.com",
+                "bias": "pos",
+                "musings": "Views intervention as proportionate to the health risk."
+            },
+            {
+                "name": "Opinion Column",
+                "domain": "op-ed.local",
+                "bias": "neg",
+                "musings": "Raises cost concerns and questions about enforcement fairness."
+            }
+        ],
+        "content": [
+            "Authorities in Seoul introduced odd‑even driving rules following back‑to‑back days of elevated particulate pollution. The policy coincides with increased subway frequencies and advisories for sensitive groups.",
+            "Health officials recommend limiting strenuous outdoor activity until levels normalize."
+        ],
+        "context": "Seasonal weather patterns and regional emissions can converge to raise PM2.5 readings across metropolitan areas. Seoul's geography, surrounded by mountains, can trap pollutants during certain atmospheric conditions. Cross-border pollution from industrial regions in China also contributes to baseline levels, making local interventions only partially effective. Weather forecasts now include air quality predictions to help authorities prepare emergency measures.",
+        "background": "Traffic restrictions have been used intermittently in major cities during acute pollution events, with mixed evidence on effectiveness. Seoul has implemented various pollution control measures since the 1990s, including low emission zones and vehicle inspection programs. The city's air quality has generally improved over decades, but episodic spikes still occur during unfavorable meteorological conditions. Similar odd-even driving schemes have been tested in Beijing, Mexico City, and Paris with varying degrees of success in reducing both traffic and emissions.",
+        "coverage": "Medium — official notices with preliminary air quality data."
+    },
+    {
+        "id": "a4",
+        "title": "Texas Grid Hits Summer Peak; Rolling Blackouts Averted",
+        "excerpt": "Reserve margins tightened in late afternoon but demand response and wind output stabilized the system.",
+        "bullets": [
+            "Peak demand set a new seasonal record",
+            "Emergency alerts stopped short of load shedding",
+            "Demand response shaved several hundred megawatts"
+        ],
+        "category": ["Local", "Trending"],
+        "hoursAgo": 3,
+        "imageQuery": "power lines electrical grid texas",
+        "sources": [
+            {
+                "name": "ERCOT",
+                "domain": "ercot.com",
+                "bias": "neu",
+                "musings": "Operational dashboards and post‑event report outline reserve margins and contributing resources."
+            },
+            {
+                "name": "Texas Tribune",
+                "domain": "texastribune.org",
+                "bias": "pos",
+                "musings": "Highlights the role of demand response and diversified generation."
+            },
+            {
+                "name": "Local Blog",
+                "domain": "gridwatch.blog",
+                "bias": "neg",
+                "musings": "Questions whether reserve estimates were sufficiently conservative."
+            }
+        ],
+        "content": [
+            "Texas set a new summer peak as temperatures surged, but grid operators avoided rolling outages. Wind output and voluntary conservation helped maintain reserves.",
+            "Analysts say the episode illustrates both the system's vulnerabilities and the benefits of resource diversity."
+        ],
+        "context": "Peak events typically occur during sustained heatwaves when air‑conditioning loads are highest. Texas operates its own electrical grid largely separate from neighboring states, limiting import options during stress periods. The state's rapid population and economic growth has increased baseline demand, while extreme weather events have become more frequent. Grid operators now use sophisticated forecasting to predict demand several days in advance.",
+        "background": "After past outages, the region added capacity and tools to manage demand spikes. The February 2021 winter storm caused widespread blackouts lasting several days, leading to regulatory changes and weatherization requirements. ERCOT has since expanded its demand response programs, allowing large industrial users to reduce consumption in exchange for payments. The grid has also added battery storage and improved coordination between renewable generators and traditional power plants to better manage supply variability.",
+        "coverage": "High — operator data and multiple independent trackers."
+    },
+    {
+        "id": "a5",
+        "title": "WHO Monitors Influenza Cluster in Southeast Asia",
+        "excerpt": "Preliminary sequencing suggests a seasonal lineage; no unusual severity reported.",
+        "bullets": [
+            "Cases linked to a single workplace and two households",
+            "No travel advisory changes as of this update",
+            "Health authorities emphasize vaccination and hygiene"
+        ],
+        "category": ["International"],
+        "hoursAgo": 11,
+        "imageQuery": "medical laboratory health research",
+        "sources": [
+            {
+                "name": "WHO Update",
+                "domain": "who.int",
+                "bias": "neu",
+                "musings": "Event‑based surveillance note with lineage and severity indicators."
+            },
+            {
+                "name": "Local Health Dept",
+                "domain": "moh.gov",
+                "bias": "pos",
+                "musings": "Straightforward risk communication and preventive guidance."
+            },
+            {
+                "name": "Commentary",
+                "domain": "healthforum.net",
+                "bias": "neg",
+                "musings": "Cautions against complacency given past surprises; calls for rapid transparency."
+            }
+        ],
+        "content": [
+            "An influenza cluster under review shows clinical profiles consistent with seasonal flu. Authorities report no changes to travel or trade recommendations.",
+            "Public health messaging focuses on vaccination, hand hygiene, and staying home while symptomatic."
+        ],
+        "context": "Clusters often emerge in workplaces and schools before broader community spread. Contact tracing helps identify transmission patterns and assess whether cases represent spillover from seasonal circulation or a novel variant. The workplace setting allows for detailed exposure mapping since employees typically have regular schedules and defined interactions. Health authorities use cluster investigations to refine public health guidance and determine if enhanced surveillance is warranted.",
+        "background": "Global surveillance networks share genomic data to track influenza lineages and inform vaccine composition. The WHO coordinates a system of reference laboratories that monitor circulating strains and assess their pandemic potential. Seasonal influenza typically causes 3-5 million severe cases globally each year, with periodic emergence of variants that can evade existing immunity. The 2009 H1N1 pandemic demonstrated how quickly novel strains can spread, leading to improved early warning systems and response protocols.",
+        "coverage": "Medium — formal update plus local health notices."
+    },
+    {
+        "id": "a6",
+        "title": "Flood Defenses Hold in Northern Italy After Weekend Storms",
+        "excerpt": "Temporary barriers and upstream retention limited overflow in several river basins.",
+        "bullets": [
+            "Localized flooding reported but no major levee failures",
+            "Rail service resumed on key regional lines",
+            "Authorities keep watch with soils still saturated"
+        ],
+        "category": ["International"],
+        "hoursAgo": 20,
+        "imageQuery": "flood water river italy storm",
+        "sources": [
+            {
+                "name": "ANSA",
+                "domain": "ansa.it",
+                "bias": "neu",
+                "musings": "Situation updates with civil protection quotes and rail service notes."
+            },
+            {
+                "name": "Local Paper",
+                "domain": "gazetta.local",
+                "bias": "pos",
+                "musings": "Credits infrastructure upgrades made after prior floods."
+            },
+            {
+                "name": "Advocacy Group",
+                "domain": "riverswatch.eu",
+                "bias": "neg",
+                "musings": "Argues that long‑term adaptation remains underfunded."
+            }
+        ],
+        "content": [
+            "Heavy weekend rain tested flood defenses across parts of northern Italy, where emergency barriers and upstream retention basins helped prevent larger overflows.",
+            "Transit disruption eased as crews cleared debris and inspected track beds."
+        ],
+        "context": "Hydrologists track basin saturation as a key determinant of runoff risk. When soils are already saturated from previous rainfall, additional precipitation runs off more quickly rather than being absorbed, increasing flood potential. River basin management involves coordinating upstream retention areas, urban drainage systems, and downstream flood defenses. Real-time monitoring networks provide data on water levels, soil moisture, and precipitation to help predict flood timing and severity.",
+        "background": "Recent investments targeted choke points identified after past flood events. Northern Italy has experienced several major floods in recent decades, including devastating events in 1994, 2000, and 2014 that caused billions in damages. Climate change projections suggest more intense precipitation events, prompting upgrades to levees, expansion of retention basins, and improved early warning systems. The European Union has provided funding for flood risk management projects as part of broader climate adaptation efforts.",
+        "coverage": "Medium — field reports and transport bulletins."
+    },
+    {
+        "id": "a7",
+        "title": "Teachers Union Reaches Tentative Deal in Chicago",
+        "excerpt": "Agreement includes phased pay increases and classroom support commitments pending ratification.",
+        "bullets": [
+            "Tentative agreement heads to membership vote",
+            "District outlines hiring for aides and counselors",
+            "Make‑up days to be scheduled if needed"
+        ],
+        "category": ["Local"],
+        "hoursAgo": 7,
+        "imageQuery": "teacher classroom school education",
+        "sources": [
+            {
+                "name": "Chicago Sun‑Times",
+                "domain": "chicago.suntimes.com",
+                "bias": "neu",
+                "musings": "Focuses on terms and ratification timeline."
+            },
+            {
+                "name": "District Brief",
+                "domain": "cps.edu",
+                "bias": "pos",
+                "musings": "Emphasizes student support staffing and budget prudence."
+            },
+            {
+                "name": "Opinion",
+                "domain": "edwatch.blog",
+                "bias": "neg",
+                "musings": "Warns about long‑term fiscal pressures."
+            }
+        ],
+        "content": [
+            "Union leaders and district officials announced a tentative contract that would raise pay over several years and add support staff in high‑need schools.",
+            "If ratified, the deal would conclude weeks of intermittent job actions."
+        ],
+        "context": "Collective bargaining in large districts often centers on both wages and student services. Chicago Public Schools serves over 340,000 students across 600+ schools, making it the third-largest district in the US. Teacher shortages in high-need schools have been a persistent challenge, with turnover rates above national averages in certain areas. Union negotiations typically occur every 3-4 years and can significantly impact district operations and student outcomes.",
+        "background": "Previous contracts established class size and support staff targets that continue to shape negotiations. The Chicago Teachers Union has historically been one of the more activist teacher unions, conducting strikes in 2012 and 2019 over issues including pay, class sizes, and school resources. The district faces ongoing budget pressures from declining enrollment, pension obligations, and facility maintenance needs. State funding formulas and federal programs provide significant portions of the budget, creating additional complexity in contract negotiations.",
+        "coverage": "High — multiple local outlets and official statements."
+    },
+    {
+        "id": "a8",
+        "title": "Steelmakers Accelerate Switch to Electric Arc Furnaces in Europe",
+        "excerpt": "Producers cite cost and emissions benefits as orders for EAF units rise.",
+        "bullets": [
+            "Two major plants announce conversions through 2027",
+            "Scrap availability remains a key constraint",
+            "Policy incentives tied to lower‑carbon output"
+        ],
+        "category": ["International"],
+        "hoursAgo": 14,
+        "imageQuery": "steel factory industrial furnace",
+        "sources": [
+            {
+                "name": "FT",
+                "domain": "ft.com",
+                "bias": "pos",
+                "musings": "Frames shift as a competitiveness play in a carbon‑constrained market."
+            },
+            {
+                "name": "Trade Journal",
+                "domain": "steelinsider.eu",
+                "bias": "neu",
+                "musings": "Details capacity timelines and equipment suppliers."
+            },
+            {
+                "name": "NGO Blog",
+                "domain": "climateaction.eu",
+                "bias": "neg",
+                "musings": "Calls for stronger safeguards on scrap sourcing and lifecycle accounting."
+            }
+        ],
+        "content": [
+            "European producers are advancing plans to replace blast furnaces with electric arc furnaces, citing lower emissions and operating flexibility.",
+            "Analysts note that scrap markets and power prices will influence the pace and economics of the transition."
+        ],
+        "context": "Industry decarbonization roadmaps lean on proven technologies while piloting hydrogen and direct reduction. Steel production accounts for roughly 7% of global CO2 emissions, making it a priority sector for climate action. Electric arc furnaces can reduce emissions by 50-80% compared to traditional blast furnaces when powered by clean electricity. The transition requires significant capital investment and coordination with electricity grid operators to manage increased power demand.",
+        "background": "Policy frameworks increasingly reward lower‑carbon materials in public procurement. The European Union's carbon border adjustment mechanism will impose costs on high-carbon steel imports starting in 2026, creating competitive advantages for cleaner production. Major automakers and construction companies have begun setting procurement targets for low-carbon steel as part of their own sustainability commitments. Government infrastructure projects increasingly specify environmental criteria in bidding processes, driving demand for cleaner materials.",
+        "coverage": "Medium — company releases corroborated by trade data."
+    },
+    {
+        "id": "a9",
+        "title": "Blindspot: Lead Pipe Replacement Lags in Midwestern Towns",
+        "excerpt": "Funding approvals outpace on‑the‑ground progress in smaller systems with limited staffing.",
+        "bullets": [
+            "Contractor shortages slow replacement schedules",
+            "Mapping gaps hinder project planning",
+            "Interim filters remain essential for at‑risk homes"
+        ],
+        "category": ["Blindspot", "Local"],
+        "hoursAgo": 26,
+        "imageQuery": "water pipes plumbing infrastructure",
+        "sources": [
+            {
+                "name": "AP Local",
+                "domain": "apnews.com",
+                "bias": "neu",
+                "musings": "Documents county‑by‑county variance and staffing constraints."
+            },
+            {
+                "name": "Civic Lab",
+                "domain": "civlab.org",
+                "bias": "neg",
+                "musings": "Argues transparency tools are insufficient for residents tracking progress."
+            },
+            {
+                "name": "Public Works",
+                "domain": "publicworks.city",
+                "bias": "pos",
+                "musings": "Notes steady bidding interest as supply chains normalize."
+            }
+        ],
+        "content": [
+            "Several Midwestern towns report slow progress replacing lead service lines despite approved funding. Staffing and contractor availability remain primary bottlenecks.",
+            "Officials urge residents to use certified filters until lines are verified and replaced."
+        ],
+        "context": "Lead exposure risks vary with pipe materials, water chemistry, and household plumbing. Lead service lines were commonly installed before 1986 when their use was banned, with an estimated 6-10 million still in service nationwide. Water treatment can reduce lead leaching through pH adjustment and corrosion control, but complete removal requires physical replacement of pipes. Children are particularly vulnerable to lead exposure, which can cause developmental delays and learning difficulties even at low levels.",
+        "background": "Federal and state programs provide funds, but smaller utilities face administrative burdens. The Infrastructure Investment and Jobs Act allocated $15 billion specifically for lead service line replacement, with additional funding from state revolving loan programs. However, many small utilities lack the engineering staff and project management capacity to efficiently access and deploy these funds. Mapping existing lead lines remains a challenge since many utilities have incomplete records of pipe materials installed decades ago.",
+        "coverage": "Medium — local reports with state dashboards."
+    },
+    {
+        "id": "a10",
+        "title": "Food Inflation Cools, But Pantry Staples Remain Elevated",
+        "excerpt": "Year‑over‑year increases ease while multi‑year comparisons show persistently higher baseline prices.",
+        "bullets": [
+            "Monthly index shows broad deceleration",
+            "Staples like rice and cooking oil still above 2021 levels",
+            "Promotions return as supply chains normalize"
+        ],
+        "category": ["Blindspot", "All"],
+        "hoursAgo": 30,
+        "imageQuery": "grocery store food prices shopping",
+        "sources": [
+            {
+                "name": "Stats Agency",
+                "domain": "statsoffice.gov",
+                "bias": "neu",
+                "musings": "Headline and core food components show continued deceleration."
+            },
+            {
+                "name": "Grocery Trade",
+                "domain": "grocertrade.com",
+                "bias": "pos",
+                "musings": "Retailers increase promotions, citing improved availability."
+            },
+            {
+                "name": "Consumer Group",
+                "domain": "buyersvoice.org",
+                "bias": "neg",
+                "musings": "Points to affordability gaps despite slower inflation."
+            }
+        ],
+        "content": [
+            "Food price inflation continues to cool on a yearly basis, but cumulative increases leave many pantry items well above pre‑pandemic levels.",
+            "Retail promotions are more frequent, though the absolute price point remains a concern for lower‑income households."
+        ],
+        "context": "Commodity and freight costs have moderated, while labor and packaging remain material inputs.",
+        "background": "Household budgets adjusted during higher inflation periods often take time to normalize after prices plateau.",
+        "coverage": "High — official indices and industry data."
+    }
+]
